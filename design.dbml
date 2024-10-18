@@ -1,0 +1,41 @@
+Table autor {
+  id integer [primary key, increment, not null]
+  nombre varchar [not null]
+  apellido1 varchar [not null]
+  apellido2 varchar
+  imagen varchar [not null]
+  fecha_de_creacion timestamp [default: `now()`, not null]
+}
+
+Table proyecto {
+  id integer [primary key, increment, not null]
+  autor_id integer [ref: > autor.id, not null]
+  idioma varchar [not null]
+  video varchar
+  web varchar
+  ruc varchar
+}
+
+Table participaciones{
+  id_proyecto integer  [ref: > proyecto.id, not null]
+  año datetime  [not null]
+  descripcion_es varchar [not null]
+  descripcion_gl varchar [not null]
+  resultado_es varchar [not null]
+  resultado_gl varchar [not null]
+}
+
+Table imagenes{
+  url varchar [primary key, not null]
+  id_proyecto integer  [ref: > proyecto.id, not null]
+  alt_text_es varchar
+  alt_text_gl varchar
+}
+
+Table traducciones{
+  id_proyecto integer  [ref: > proyecto.id, not null]
+  titulo_es varchar [not null]
+  titulo_gl varchar [not null]
+  resumen_es varchar [not null]
+  resumen_gl varchar [not null]
+}
